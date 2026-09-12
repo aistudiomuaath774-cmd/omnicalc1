@@ -5,6 +5,7 @@ import { ThemeProvider } from "./theme/ThemeContext"
 import { Header } from "./components/Header"
 import { Footer } from "./components/Footer"
 import CookieConsent from "./components/CookieConsent"
+import AdSenseLoader from "./components/AdSenseLoader"
 
 const HomePage = lazy(() => import("./pages/HomePage"))
 const CalculatorPage = lazy(() => import("./pages/CalculatorPage"))
@@ -30,6 +31,7 @@ export default function App() {
           <div className="flex min-h-screen flex-col bg-background text-foreground">
             <Header />
             <CookieConsent />
+            <AdSenseLoader />
             <Suspense fallback={<RouteFallback />}>
               <Routes>
                 <Route path="/" element={<HomePage />} />

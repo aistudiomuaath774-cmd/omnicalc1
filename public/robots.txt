@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /ads.txt
-Disallow: /api/
 
-Sitemap: https://omnicalc1.vercel.app/sitemap.xml
+# Update the domain below to your production domain
+Sitemap: https://YOUR_PRODUCTION_DOMAIN/sitemap.xml

@@ -1,25 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://omnicalc1.vercel.app/?lang=en</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/?lang=ar</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/scientific?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/scientific?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/unit-converter?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/unit-converter?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/physics?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/physics?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/health?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/health?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/vat?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/vat?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/finance?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/finance?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/date-age?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/calculator/date-age?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/contact?lang=en</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/contact?lang=ar</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/privacy?lang=en</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/privacy?lang=ar</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/terms?lang=en</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://omnicalc1.vercel.app/terms?lang=ar</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage -->
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/?lang=en</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR_PRODUCTION_DOMAIN/?lang=en"/>
+  </url>
+
+  <!-- Static pages -->
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/contact?lang=en</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/contact?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/contact?lang=ar"/>
+  </url>
+
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/privacy?lang=en</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/privacy?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/privacy?lang=ar"/>
+  </url>
+
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/terms?lang=en</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/terms?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/terms?lang=ar"/>
+  </url>
+
+  <!-- Calculators -->
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/calculator/scientific?lang=en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/calculator/scientific?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/calculator/scientific?lang=ar"/>
+  </url>
+
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/calculator/unit-converter?lang=en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/calculator/unit-converter?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/calculator/unit-converter?lang=ar"/>
+  </url>
+
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/calculator/physics?lang=en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/calculator/physics?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/calculator/physics?lang=ar"/>
+  </url>
+
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/calculator/health?lang=en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/calculator/health?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/calculator/health?lang=ar"/>
+  </url>
+
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/calculator/vat?lang=en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/calculator/vat?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/calculator/vat?lang=ar"/>
+  </url>
+
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/calculator/finance?lang=en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/calculator/finance?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/calculator/finance?lang=ar"/>
+  </url>
+
+  <url>
+    <loc>https://YOUR_PRODUCTION_DOMAIN/calculator/date-age?lang=en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_PRODUCTION_DOMAIN/calculator/date-age?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://YOUR_PRODUCTION_DOMAIN/calculator/date-age?lang=ar"/>
+  </url>
+
 </urlset>
