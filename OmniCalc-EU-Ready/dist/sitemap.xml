@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://omnicalc1.vercel.app/?lang=en</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/?lang=ar</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/scientific?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/scientific?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/unit-converter?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/unit-converter?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/physics?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/physics?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/health?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/health?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/vat?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/vat?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/finance?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/finance?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/date-age?lang=en</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/calculator/date-age?lang=ar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/contact?lang=en</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/contact?lang=ar</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/privacy?lang=en</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/privacy?lang=ar</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/terms?lang=en</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://omnicalc1.vercel.app/terms?lang=ar</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
