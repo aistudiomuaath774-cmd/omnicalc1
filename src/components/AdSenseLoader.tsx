@@ -5,7 +5,14 @@ const SCRIPT_ID = "omnicalc-adsense-script"
 const CLIENT = "ca-pub-7538440942805514"
 
 export default function AdSenseLoader() {
+  // Only attempt to load AdSense if VITE_USE_ADSENSE === 'true' (set in your Vite env)
+  // This project is now using external providers like Adsterra; keep AdSense disabled by default.
+  // To enable AdSense, set VITE_USE_ADSENSE=true in your environment.
+  const enabled = (import.meta.env as any).VITE_USE_ADSENSE === "true"
+
   useEffect(() => {
+    if (!enabled) return
+
     const load = () => {
       if (!hasCookieConsent() || document.getElementById(SCRIPT_ID)) return
       const script = document.createElement("script")
@@ -19,7 +26,7 @@ export default function AdSenseLoader() {
     load()
     window.addEventListener("omnicalc:consent", load)
     return () => window.removeEventListener("omnicalc:consent", load)
-  }, [])
+  }, [enabled])
 
   return null
 }

@@ -15,10 +15,13 @@ declare global {
 
 type ExternalAdVariant = "tower" | "smallTower" | "banner"
 
+// Updated: use provided Adsterra key for banner variant (Adsterra / alwaysmulticulturallanding)
 const ads: Record<ExternalAdVariant, { key: string; height: number; width: number }> = {
+  // tower and smallTower remain as-is (external provider keys)
   tower: { key: "10a59e47b41d9889deb284ab5a0bf460", height: 600, width: 160 },
   smallTower: { key: "4bab395f72e708783efcfb02fe5691da", height: 300, width: 160 },
-  banner: { key: "22289a83ef12e80a727a939faa1b5fa9", height: 60, width: 468 },
+  // banner replaced with the Adsterra/Ad provider key you supplied
+  banner: { key: "1ece01a59c2c84ded856edd9d9cb7b27", height: 50, width: 320 },
 }
 
 export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalAdVariant; className?: string }) {
