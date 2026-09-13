@@ -8,7 +8,9 @@ export default function AdSenseLoader() {
   // Only attempt to load AdSense if VITE_USE_ADSENSE === 'true' (set in your Vite env)
   // This project is now using external providers like Adsterra; keep AdSense disabled by default.
   // To enable AdSense, set VITE_USE_ADSENSE=true in your environment.
-  const enabled = (import.meta.env as any).VITE_USE_ADSENSE === "true"
+  // Cast import.meta to any to avoid TypeScript error during build in environments
+  // where the Vite types are not loaded.
+  const enabled = (import.meta as any).VITE_USE_ADSENSE === "true"
 
   useEffect(() => {
     if (!enabled) return
