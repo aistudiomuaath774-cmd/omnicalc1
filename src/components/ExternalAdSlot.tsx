@@ -17,6 +17,9 @@ const isDev = import.meta.env.MODE !== "production"
 const ALLOW_ADS_ON_DEV = (import.meta as any).VITE_ALLOW_ADS_ON_DEV === "true"
 // Base URL for ad provider (put official Adsterra url here via env)
 const AD_PROVIDER_BASE = (import.meta as any).VITE_AD_PROVIDER_BASE || "https://alwaysmulticulturallanding.com"
+// Full script URL (optional). Can include placeholder {KEY} which will be replaced with the ad key.
+// Example: VITE_AD_PROVIDER_SCRIPT_URL="https://alwaysmulticulturallanding.com/axm930yuc?key={KEY}"
+const AD_PROVIDER_SCRIPT = (import.meta as any).VITE_AD_PROVIDER_SCRIPT_URL || null
 
 export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalAdVariant; className?: string }) {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -83,11 +86,16 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
       params: {},
     }
 
-    // Build script URL. Prefer env var to store real provider domain (Adsterra official)
-    const scriptUrl = `${AD_PROVIDER_BASE}/${ad.key}/invoke.js`
+    // Build script URL. Prefer explicit script URL env var (supports {KEY} placeholder), otherwise fall back to base pattern
+    let scriptUrl: string
+    if (AD_PROVIDER_SCRIPT) {
+      scriptUrl = AD_PROVIDER_SCRIPT.includes("{KEY}") ? AD_PROVIDER_SCRIPT.replace("{KEY}", ad.key) : AD_PROVIDER_SCRIPT
+    } else {
+      scriptUrl = `${AD_PROVIDER_BASE}/${ad.key}/invoke.js`
+    }
 
     // Load script with helper
-    const scriptId = DEFAULT_SCRIPT_ID
+    const scriptId = `${DEFAULT_SCRIPT_ID}-${ad.key}`
     const loadTimeout = window.setTimeout(() => {
       // If loading takes too long, show unavailable (network slow or blocked)
       setAdUnavailable(true)
