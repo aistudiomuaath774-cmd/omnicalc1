@@ -1,17 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { hasCookieConsent } from "./CookieConsent"
-
-declare global {
-  interface Window {
-    atOptions?: {
-      key: string
-      format: "iframe"
-      height: number
-      width: number
-      params: Record<string, unknown>
-    }
-  }
-}
+import { loadScript } from "./AdLoader"
 
 type ExternalAdVariant = "tower" | "smallTower" | "banner"
 
@@ -21,11 +10,21 @@ const ads: Record<ExternalAdVariant, { key: string; height: number; width: numbe
   banner: { key: "1ece01a59c2c84ded856edd9d9cb7b27", height: 50, width: 320 },
 }
 
+const DEFAULT_SCRIPT_ID = "omnicalc-external-ad-script"
+
+// Helper: allow dev override to load ads on localhost when env flag set
+const isDev = import.meta.env.MODE !== "production"
+const ALLOW_ADS_ON_DEV = (import.meta as any).VITE_ALLOW_ADS_ON_DEV === "true"
+// Base URL for ad provider (put official Adsterra url here via env)
+const AD_PROVIDER_BASE = (import.meta as any).VITE_AD_PROVIDER_BASE || "https://alwaysmulticulturallanding.com"
+
 export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalAdVariant; className?: string }) {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
   const ad = ads[variant]
-  const [consented, setConsented] = useState(hasCookieConsent)
+  const [consented, setConsented] = useState<boolean>(() => (typeof window !== "undefined" ? hasCookieConsent() : false))
   const [adUnavailable, setAdUnavailable] = useState(false)
+  const [inView, setInView] = useState(false)
+  const slotId = `omnicalc-ad-${variant}-${ad.key}`
 
   useEffect(() => {
     const onConsent = () => setConsented(hasCookieConsent())
@@ -34,15 +33,49 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
   }, [])
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container || !consented) return
+    const el = containerRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInView(true)
+            obs.disconnect()
+          }
+        })
+      },
+      { rootMargin: "200px", threshold: 0.01 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
-    // تفريغ الحاوية وإعادة ضبط الحالة
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    // Do nothing until consent or dev-override
+    if (!consented && !(isDev && ALLOW_ADS_ON_DEV)) {
+      return
+    }
+
+    // Also wait until element is in viewport (lazy load)
+    if (!inView) return
+
+    // Clear previous
     container.replaceChildren()
     setAdUnavailable(false)
 
-    // إعداد متغيرات الإعلان
-    window.atOptions = {
+    // Provide a named container that some ad scripts expect
+    const adContainer = document.createElement("div")
+    adContainer.id = slotId
+    adContainer.style.width = `${ad.width}px`
+    adContainer.style.height = `${ad.height}px`
+    adContainer.setAttribute("aria-hidden", "true")
+    container.appendChild(adContainer)
+
+    // Set any global options the provider expects (e.g., atOptions)
+    ;(window as any).atOptions = {
       key: ad.key,
       format: "iframe",
       height: ad.height,
@@ -50,23 +83,33 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
       params: {},
     }
 
-    // إنشاء سكربت الإعلان
-    const script = document.createElement("script")
-    script.async = true
-    script.src = `https://alwaysmulticulturallanding.com/${ad.key}/invoke.js`
-    script.dataset.omnicalcAd = variant
+    // Build script URL. Prefer env var to store real provider domain (Adsterra official)
+    const scriptUrl = `${AD_PROVIDER_BASE}/${ad.key}/invoke.js`
 
-    // إظهار نص العطل فقط في حال فشل تحميل السكربت (بسبب مانع الإعلانات)
-    script.onerror = () => {
+    // Load script with helper
+    const scriptId = DEFAULT_SCRIPT_ID
+    const loadTimeout = window.setTimeout(() => {
+      // If loading takes too long, show unavailable (network slow or blocked)
       setAdUnavailable(true)
-    }
+    }, 8000) // 8s
 
-    container.appendChild(script)
+    loadScript({ id: scriptId, src: scriptUrl, async: true, crossOrigin: "anonymous", dataset: { variant } })
+      .then(() => {
+        clearTimeout(loadTimeout)
+        // provider script should fill the div with id=slotId
+      })
+      .catch((err) => {
+        clearTimeout(loadTimeout)
+        // Could be blocked by AdBlock (ERR_BLOCKED_BY_CLIENT)
+        setAdUnavailable(true)
+        console.warn("Ad script failed to load", err)
+      })
 
     return () => {
+      // Optionally cleanup created ad container; but avoid removing external script to reuse for other slots
       if (container) container.replaceChildren()
     }
-  }, [ad.height, ad.key, ad.width, variant, consented])
+  }, [ad.key, ad.height, ad.width, consented, inView])
 
   return (
     <div
@@ -75,14 +118,14 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
       style={{ minHeight: ad.height }}
       aria-label="Advertisement"
       data-consent-required={!consented}
-      data-ad-provider="alwaysmulticulturallanding"
+      data-ad-provider="external"
     >
       {consented && adUnavailable && (
         <span className="px-3 text-center text-xs text-muted-foreground">
-          Ads may be unavailable. Please check your ad-blocker settings if you would like to support this free tool.
+          الإعلانات قد تكون غير متاحة. افحص إعدادات مانع الإعلانات أو الشبكة لديك.
         </span>
       )}
-      {!consented && <span className="px-3 text-center text-xs text-muted-foreground">Ads load after your consent.</span>}
+      {!consented && <span className="px-3 text-center text-xs text-muted-foreground">يتم تحميل الإعلانات بعد موافقتك.</span>}
     </div>
   )
 }
