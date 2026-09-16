@@ -51,7 +51,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       let str = translations[lang][key] ?? translations.en[key] ?? key
       if (vars) {
         for (const [k, v] of Object.entries(vars)) {
-          str = str.replace(new RegExp(`\\{${k}\\}`, "g"), String(v))
+          str = str.replace(new RegExp(`\\{${k}\\}`, "g"), `${v}`)
         }
       }
       return str

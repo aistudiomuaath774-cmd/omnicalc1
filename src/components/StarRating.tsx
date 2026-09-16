@@ -16,7 +16,7 @@ export function StarRating({ calculatorId }: { calculatorId: string }) {
 
   const choose = (value: number) => {
     setRating(value)
-    window.localStorage.setItem(storageKey, String(value))
+    window.localStorage.setItem(storageKey, `${value}`)
   }
 
   const active = hover || rating
