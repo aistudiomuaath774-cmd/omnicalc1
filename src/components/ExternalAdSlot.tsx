@@ -149,7 +149,7 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
                 fbIframe.style.display = "block"
                 // prefer property over setAttribute to avoid TS DOM typing nuances
                 fbIframe.src = iframeUrl.includes("{KEY}") ? iframeUrl.replace("{KEY}", ad.key) : iframeUrl
-                ;(fbIframe as HTMLIFrameElement).referrerPolicy = "no-referrer"
+                fbIframe.referrerPolicy = "no-referrer"
                 // append to the adContainer (or container if adContainer missing)
                 (injected || adContainer).appendChild(fbIframe)
                 console.warn("[Ad debug] fallback iframe inserted (iframeUrl used).")
