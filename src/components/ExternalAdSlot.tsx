@@ -15,10 +15,10 @@ const DEFAULT_SCRIPT_ID = "omnicalc-external-ad-script"
 // env helpers
 const isDev = (import.meta as any).env?.MODE !== "production"
 const ALLOW_ADS_ON_DEV = (import.meta as any).VITE_ALLOW_ADS_ON_DEV === "true"
-const AD_PROVIDER_BASE = (import.meta as any).VITE_AD_PROVIDER_BASE || "https://alwaysmulticulturallanding.com"
-const AD_PROVIDER_SCRIPT = (import.meta as any).VITE_AD_PROVIDER_SCRIPT_URL || null
+const AD_PROVIDER_BASE: string = (import.meta as any).VITE_AD_PROVIDER_BASE || "https://alwaysmulticulturallanding.com"
+const AD_PROVIDER_SCRIPT: string | null = (import.meta as any).VITE_AD_PROVIDER_SCRIPT_URL || null
 // Optional explicit iframe URL to use as fallback (set to the working URL you tested)
-const AD_PROVIDER_IFRAME_URL = (import.meta as any).VITE_AD_PROVIDER_IFRAME_URL || null
+const AD_PROVIDER_IFRAME_URL: string | null = (import.meta as any).VITE_AD_PROVIDER_IFRAME_URL || null
 
 export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalAdVariant; className?: string }) {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -69,7 +69,7 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
     setAdUnavailable(false)
 
     // Ensure container has positioning and a sensible z-index (not to cover cookie dialog)
-    container.style.position = container.style.position || "relative"
+    if (!container.style.position) container.style.position = "relative"
     // keep z-index below cookie consent (z-50) but above normal content; adjust if needed
     if (!container.style.zIndex) container.style.zIndex = "20"
 
@@ -147,8 +147,9 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
                 fbIframe.height = String(ad.height)
                 fbIframe.style.border = "0"
                 fbIframe.style.display = "block"
+                // prefer property over setAttribute to avoid TS DOM typing nuances
                 fbIframe.src = iframeUrl.includes("{KEY}") ? iframeUrl.replace("{KEY}", ad.key) : iframeUrl
-                fbIframe.setAttribute("referrerpolicy", "no-referrer")
+                ;(fbIframe as HTMLIFrameElement).referrerPolicy = "no-referrer"
                 // append to the adContainer (or container if adContainer missing)
                 (injected || adContainer).appendChild(fbIframe)
                 console.warn("[Ad debug] fallback iframe inserted (iframeUrl used).")
