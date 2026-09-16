@@ -12,14 +12,13 @@ const ads: Record<ExternalAdVariant, { key: string; height: number; width: numbe
 
 const DEFAULT_SCRIPT_ID = "omnicalc-external-ad-script"
 
-// Helper: allow dev override to load ads on localhost when env flag set
+// env helpers
 const isDev = (import.meta as any).env?.MODE !== "production"
 const ALLOW_ADS_ON_DEV = (import.meta as any).VITE_ALLOW_ADS_ON_DEV === "true"
-// Base URL for ad provider (put official Adsterra url here via env)
 const AD_PROVIDER_BASE = (import.meta as any).VITE_AD_PROVIDER_BASE || "https://alwaysmulticulturallanding.com"
-// Full script URL (optional). Can include placeholder {KEY} which will be replaced with the ad key.
-// Example: VITE_AD_PROVIDER_SCRIPT_URL="https://alwaysmulticulturallanding.com/axm930yuc?key={KEY}"
 const AD_PROVIDER_SCRIPT = (import.meta as any).VITE_AD_PROVIDER_SCRIPT_URL || null
+// Optional explicit iframe URL to use as fallback (set to the working URL you tested)
+const AD_PROVIDER_IFRAME_URL = (import.meta as any).VITE_AD_PROVIDER_IFRAME_URL || null
 
 export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalAdVariant; className?: string }) {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -69,6 +68,18 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
     container.replaceChildren()
     setAdUnavailable(false)
 
+    // Ensure container has positioning and a sensible z-index (not to cover cookie dialog)
+    container.style.position = container.style.position || "relative"
+    // keep z-index below cookie consent (z-50) but above normal content; adjust if needed
+    if (!container.style.zIndex) container.style.zIndex = "20"
+
+    // Highlight briefly for debug (remove after 2s) to see if it's covered
+    const prevOutline = container.style.outline
+    container.style.outline = "3px dashed rgba(0,128,255,0.8)"
+    const outlineTimer = window.setTimeout(() => {
+      container.style.outline = prevOutline || ""
+    }, 2000)
+
     // Provide a named container that some ad scripts expect
     const adContainer = document.createElement("div")
     adContainer.id = slotId
@@ -94,27 +105,74 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
       scriptUrl = `${AD_PROVIDER_BASE}/${ad.key}/invoke.js`
     }
 
+    // DEBUG: inspect stacking/overlays at center point
+    try {
+      const rect = container.getBoundingClientRect()
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+      const topEl = document.elementFromPoint(cx, cy)
+      console.log("[Ad debug] slot rect:", rect, "elementAtCenter:", topEl)
+      const elems = document.elementsFromPoint(cx, cy)
+      console.log("[Ad debug] elementsFromPoint:", elems.map(e => ({ tag: e.tagName, id: e.id, classes: e.className })))
+    } catch (e) {
+      console.warn("[Ad debug] elementFromPoint failed", e)
+    }
+
     // Load script with helper
     const scriptId = `${DEFAULT_SCRIPT_ID}-${ad.key}`
     const loadTimeout = window.setTimeout(() => {
       // If loading takes too long, show unavailable (network slow or blocked)
       setAdUnavailable(true)
-    }, 8000) // 8s
+    }, 10000) // 10s
+
+    let probeCancelled = false
 
     loadScript({ id: scriptId, src: scriptUrl, async: true, crossOrigin: "anonymous", dataset: { variant } })
       .then(() => {
         clearTimeout(loadTimeout)
         // provider script should fill the div with id=slotId
+        // Wait a short time to let provider inject content
+        setTimeout(() => {
+          if (probeCancelled) return
+          const injected = document.getElementById(slotId)
+          const innerLen = injected ? injected.innerHTML.trim().length : 0
+          console.log("[Ad debug] after load injected inner length:", innerLen)
+          if (!injected || innerLen === 0) {
+            // Try a fallback: insert iframe (only if an explicit iframe URL is provided)
+            const iframeUrl = AD_PROVIDER_IFRAME_URL || (AD_PROVIDER_SCRIPT && !AD_PROVIDER_SCRIPT.endsWith(".js") ? AD_PROVIDER_SCRIPT : null)
+            if (iframeUrl) {
+              try {
+                const fbIframe = document.createElement("iframe")
+                fbIframe.width = String(ad.width)
+                fbIframe.height = String(ad.height)
+                fbIframe.style.border = "0"
+                fbIframe.style.display = "block"
+                fbIframe.src = iframeUrl.includes("{KEY}") ? iframeUrl.replace("{KEY}", ad.key) : iframeUrl
+                fbIframe.setAttribute("referrerpolicy", "no-referrer")
+                // append to the adContainer (or container if adContainer missing)
+                (injected || adContainer).appendChild(fbIframe)
+                console.warn("[Ad debug] fallback iframe inserted (iframeUrl used).")
+              } catch (e) {
+                console.error("[Ad debug] fallback iframe insertion failed", e)
+              }
+            } else {
+              console.warn("[Ad debug] no iframe fallback URL available; ad container empty after script load.")
+            }
+          } else {
+            console.log("[Ad debug] provider injected content successfully.")
+          }
+        }, 800) // wait 0.8s after script load
       })
       .catch((err) => {
         clearTimeout(loadTimeout)
-        // Could be blocked by AdBlock (ERR_BLOCKED_BY_CLIENT)
         setAdUnavailable(true)
         console.warn("Ad script failed to load", err)
       })
 
     return () => {
-      // Optionally cleanup created ad container; but avoid removing external script to reuse for other slots
+      probeCancelled = true
+      window.clearTimeout(loadTimeout)
+      window.clearTimeout(outlineTimer)
       if (container) container.replaceChildren()
     }
   }, [ad.key, ad.height, ad.width, consented, inView])
@@ -122,7 +180,7 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
   return (
     <div
       ref={containerRef}
-      className={`ad-frame ad-frame-${variant} flex w-full items-center justify-center overflow-hidden ${className}`}
+      className={`ad-frame ad-frame-${variant} flex w-full items-center justify-center overflow-visible ${className}`}
       style={{ minHeight: ad.height }}
       aria-label="Advertisement"
       data-consent-required={!consented}

@@ -1,32 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --muted: 210 40% 94%;
-    --muted-foreground: 215 16% 47%;
-    --border: 214 32% 88%;
-    --input: 214 32% 88%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
-    --accent: 199 89% 48%;
-    --accent-foreground: 0 0% 100%;
-    --ring: 221 83% 53%;
-    --radius: 0.75rem;
-  }
-
-  .dark {
-    --background: 222 47% 9%;
-    --foreground: 210 40% 96%;
-    --card: 222 40% 13%;
-    --card-foreground: 210 40% 96%;
-    --muted: 217 33% 18%;
-    --muted-foreground: 215 20% 65%;
     --border: 217 33% 22%;
     --input: 217 33% 22%;
     --primary: 217 91% 60%;
@@ -149,4 +120,17 @@
       transform: translateY(0);
     }
   }
+}
+
+/* Debug/visibility helpers for ad containers */
+.ad-frame {
+  position: relative; /* ensure positioning context */
+  z-index: 20;        /* below cookie dialog (z-50) but above normal content */
+  overflow: visible;  /* allow iframe to display fully */
+}
+
+/* temporary debug class to test forcing visibility */
+.ad-frame--force-visible {
+  z-index: 200 !important; /* debug only: pushes ad above everything; لا تتركه في الإنتاج */
+  outline: 3px dashed rgba(255,0,0,0.9);
 }
