@@ -107,10 +107,10 @@ export default function DateAge() {
       <ResultCard title={t("date.title")} resultText={result?.text ?? ""}>
         {result && (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <Metric label={t("years")} value={String(result.y)} />
-            <Metric label={t("months")} value={String(result.m)} />
-            <Metric label={t("days")} value={String(result.d)} />
-            <Metric label={`${t("days")} (total)`} value={String(result.total)} />
+            <Metric label={t("years")} value={`${result.y}`} />
+            <Metric label={t("months")} value={`${result.m}`} />
+            <Metric label={t("days")} value={`${result.d}`} />
+            <Metric label={`${t("days")} (total)`} value={`${result.total}`} />
           </div>
         )}
       </ResultCard>
