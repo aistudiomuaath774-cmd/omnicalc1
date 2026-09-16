@@ -143,8 +143,8 @@ export function ExternalAdSlot({ variant, className = "" }: { variant: ExternalA
             if (iframeUrl) {
               try {
                 const fbIframe = document.createElement("iframe")
-                fbIframe.width = String(ad.width)
-                fbIframe.height = String(ad.height)
+                fbIframe.width = `${ad.width}`
+                fbIframe.height = `${ad.height}`
                 fbIframe.style.border = "0"
                 fbIframe.style.display = "block"
                 // prefer property over setAttribute to avoid TS DOM typing nuances
