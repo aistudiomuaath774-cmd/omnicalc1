@@ -1,35 +1,35 @@
-    --border: 217 33% 22%;
-    --input: 217 33% 22%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
-    --accent: 199 89% 55%;
-    --accent-foreground: 222 47% 11%;
-    --ring: 217 91% 60%;
-  }
+:root {
+  --border: 217 33% 22%;
+  --input: 217 33% 22%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 222 47% 11%;
+  --accent: 199 89% 55%;
+  --accent-foreground: 222 47% 11%;
+  --ring: 217 91% 60%;
+}
 
-  * {
-    border-color: hsl(var(--border));
-  }
+* {
+  border-color: hsl(var(--border));
+}
 
-  html {
-    scroll-behavior: smooth;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    -webkit-font-smoothing: antialiased;
-  }
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
 
-  html[dir="rtl"] body {
-    font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
-  }
+html[dir="rtl"] body {
+  font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
+}
 
-  :focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
-  }
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
 }
 
 @layer components {
