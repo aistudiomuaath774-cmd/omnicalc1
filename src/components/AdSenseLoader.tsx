@@ -6,7 +6,7 @@ const CLIENT = (import.meta as any).VITE_ADSENSE_CLIENT || "ca-pub-XXXXXXXXXXXX"
 
 export default function AdSenseLoader() {
   const enabled = (import.meta as any).VITE_USE_ADSENSE === "true"
-  const isDev = import.meta.env.MODE !== "production"
+  const isDev = (import.meta as any).env?.MODE !== "production"
   const ALLOW_ADS_ON_DEV = (import.meta as any).VITE_ALLOW_ADS_ON_DEV === "true"
 
   useEffect(() => {

@@ -13,7 +13,7 @@ const ads: Record<ExternalAdVariant, { key: string; height: number; width: numbe
 const DEFAULT_SCRIPT_ID = "omnicalc-external-ad-script"
 
 // Helper: allow dev override to load ads on localhost when env flag set
-const isDev = import.meta.env.MODE !== "production"
+const isDev = (import.meta as any).env?.MODE !== "production"
 const ALLOW_ADS_ON_DEV = (import.meta as any).VITE_ALLOW_ADS_ON_DEV === "true"
 // Base URL for ad provider (put official Adsterra url here via env)
 const AD_PROVIDER_BASE = (import.meta as any).VITE_AD_PROVIDER_BASE || "https://alwaysmulticulturallanding.com"
