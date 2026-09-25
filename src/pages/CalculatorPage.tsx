@@ -8,6 +8,7 @@ import { useLanguage } from "@/i18n/LanguageContext"
 import { HistoryPanel } from "@/components/HistoryPanel"
 import { StarRating } from "@/components/StarRating"
 import { FaqSection, GuideSection } from "@/components/FaqSection"
+import { MethodologySection } from "@/components/MethodologySection"
 
 function LoadingCard() {
   return (
@@ -98,6 +99,7 @@ export default function CalculatorPage() {
           </CalculatorContextProvider>
 
           <GuideSection text={t(def.guideKey)} />
+          <MethodologySection calculatorId={def.id} />
           <FaqSection faq={def.faq} />
         </article>
 

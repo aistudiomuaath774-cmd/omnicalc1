@@ -3,13 +3,60 @@ import { useLanguage } from "@/i18n/LanguageContext"
 import { useSEO } from "@/hooks/useSEO"
 
 const content = {
-  en: { title: "Terms of Use", updated: "Last updated: September 1, 2026", sections: [["Acceptance", "By using OmniCalc, you agree to these Terms of Use. If you do not agree, please stop using the site."], ["Service purpose", "OmniCalc provides general-purpose calculators and educational explanations. Results are not a substitute for professional medical, financial, legal, tax, engineering, or other specialist advice."], ["Accuracy", "We aim to provide useful tools, but we do not guarantee that every result is complete, current, or error-free. Verify important results independently before relying on them."], ["Acceptable use", "Use the site lawfully. Do not attempt to disrupt the service, misuse its content, scrape it in violation of applicable law, or infringe third-party rights."], ["Advertising and third parties", "The site may use Google AdSense, external advertising providers, Google Fonts, and Vercel hosting. Their terms and privacy policies may apply. Advertising is not an endorsement."], ["Availability and liability", "Features may change or become unavailable. To the maximum extent permitted by law, the site operator is not responsible for losses arising from reliance on results, content, interruptions, or third-party services."], ["Changes and contact", "We may update these terms when the service changes. Continued use after an update means acceptance. For questions, use the Contact page."]]},
-  ar: { title: "شروط الاستخدام", updated: "آخر تحديث: 1 سبتمبر 2026", sections: [["الموافقة", "باستخدامك OmniCalc فإنك توافق على شروط الاستخدام هذه. إذا لم توافق عليها، يرجى التوقف عن استخدام الموقع."], ["غرض الخدمة", "تقدم OmniCalc حاسبات عامة وشروحات تعليمية. النتائج لا تحل محل الاستشارات الطبية أو المالية أو القانونية أو الضريبية أو الهندسية أو غيرها من الاستشارات المتخصصة."], ["الدقة", "نسعى إلى تقديم أدوات مفيدة، لكننا لا نضمن أن كل نتيجة كاملة أو محدثة أو خالية من الأخطاء. تحقّق من النتائج المهمة بشكل مستقل قبل الاعتماد عليها."], ["الاستخدام المقبول", "استخدم الموقع بطريقة قانونية، ولا تحاول تعطيل الخدمة أو إساءة استخدام محتواها أو كشطه بما يخالف القانون أو حقوق الغير."], ["الإعلانات والجهات الخارجية", "قد يستخدم الموقع Google AdSense ومزودي إعلانات خارجيين وGoogle Fonts واستضافة Vercel. وقد تنطبق سياسات وشروط تلك الجهات. لا تمثل الإعلانات توصية."], ["التوفر والمسؤولية", "قد تتغير الخصائص أو تصبح غير متاحة. إلى أقصى حد يسمح به القانون، لا يتحمل مشغل الموقع مسؤولية الخسائر الناتجة عن الاعتماد على النتائج أو المحتوى أو الانقطاعات أو الخدمات الخارجية."], ["التعديلات والتواصل", "قد نحدّث هذه الشروط عند تغيير الخدمة. ويعني استمرار الاستخدام بعد التحديث الموافقة عليها. للاستفسارات استخدم صفحة اتصل بنا."]] },
+  en: {
+    title: "Terms of Use",
+    updated: "Last updated: September 25, 2026",
+    sections: [
+      ["Acceptance", "By using OmniCalc, you agree to these Terms of Use. If you do not agree, please stop using the site."],
+      ["Service purpose", "OmniCalc provides general-purpose calculators and educational explanations. Results are not a substitute for professional medical, financial, legal, tax, engineering, or other specialist advice."],
+      ["Accuracy", "We aim to provide useful tools, but we do not guarantee that every result is complete, current, or error-free. Verify important results independently before relying on them."],
+      ["Methodology and references", "Calculator pages explain their main methodology, assumptions, limitations, and selected references. Reference links are provided for context and should not be treated as a substitute for professional review or the rules applicable to your specific situation."],
+      ["Acceptable use", "Use the site lawfully. Do not attempt to disrupt the service, misuse its content, scrape it in violation of applicable law, or infringe third-party rights."],
+      ["Advertising and third parties", "The site may use Google AdSense, Google Fonts, and Vercel hosting. Their terms and privacy policies may apply. Advertising is not an endorsement. Where required, advertising technologies are controlled by the site's consent settings and applicable Google consent requirements."],
+      ["Availability and liability", "Features may change or become unavailable. To the maximum extent permitted by law, the site operator is not responsible for losses arising from reliance on results, content, interruptions, or third-party services."],
+      ["Changes and contact", "We may update these terms when the service changes. Continued use after an update means acceptance. For questions, use the Contact page."],
+    ],
+  },
+  ar: {
+    title: "شروط الاستخدام",
+    updated: "آخر تحديث: 25 سبتمبر 2026",
+    sections: [
+      ["الموافقة", "باستخدامك OmniCalc فإنك توافق على شروط الاستخدام هذه. إذا لم توافق عليها، يرجى التوقف عن استخدام الموقع."],
+      ["غرض الخدمة", "تقدم OmniCalc حاسبات عامة وشروحات تعليمية. النتائج لا تحل محل الاستشارات الطبية أو المالية أو القانونية أو الضريبية أو الهندسية أو غيرها من الاستشارات المتخصصة."],
+      ["الدقة", "نسعى إلى تقديم أدوات مفيدة، لكننا لا نضمن أن كل نتيجة كاملة أو محدثة أو خالية من الأخطاء. تحقّق من النتائج المهمة بشكل مستقل قبل الاعتماد عليها."],
+      ["المنهجية والمراجع", "تشرح صفحات الحاسبات المنهجية الأساسية والافتراضات والحدود وبعض المراجع المختارة. تُقدّم الروابط المرجعية للسياق ولا تُعد بديلاً عن المراجعة المتخصصة أو القواعد السارية على حالتك."],
+      ["الاستخدام المقبول", "استخدم الموقع بطريقة قانونية، ولا تحاول تعطيل الخدمة أو إساءة استخدام محتواها أو كشطه بما يخالف القانون أو حقوق الغير."],
+      ["الإعلانات والجهات الخارجية", "قد يستخدم الموقع Google AdSense وGoogle Fonts واستضافة Vercel. وقد تنطبق سياسات وشروط هذه الجهات. لا تمثل الإعلانات توصية. وعند وجوب ذلك، تُدار تقنيات الإعلان من خلال إعدادات الموافقة ومتطلبات Google ذات الصلة."],
+      ["التوفر والمسؤولية", "قد تتغير الخصائص أو تصبح غير متاحة. إلى أقصى حد يسمح به القانون، لا يتحمل مشغل الموقع مسؤولية الخسائر الناتجة عن الاعتماد على النتائج أو المحتوى أو الانقطاعات أو الخدمات الخارجية."],
+      ["التعديلات والتواصل", "قد نحدّث هذه الشروط عند تغيير الخدمة. ويعني استمرار الاستخدام بعد التحديث الموافقة عليها. للاستفسارات استخدم صفحة اتصل بنا."],
+    ],
+  },
 } as const
 
 export default function TermsPage() {
   const { lang } = useLanguage()
   const page = content[lang]
   useSEO({ title: `${page.title} — OmniCalc`, description: page.sections[0][1], lang })
-  return <main className="mx-auto w-full max-w-4xl px-4 py-10 sm:py-14"><header className="mb-8 flex items-start gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"><FileText className="h-6 w-6" aria-hidden="true" /></span><div><h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{page.title}</h1><p className="mt-2 text-muted-foreground">{page.updated}</p></div></header><article className="card divide-y divide-border p-6 sm:p-8">{page.sections.map(([title, text]) => <section key={title} className="py-5 first:pt-0 last:pb-0"><h2 className="text-lg font-bold">{title}</h2><p className="mt-2 leading-7 text-muted-foreground">{text}</p></section>)}</article></main>
+
+  return (
+    <main className="mx-auto w-full max-w-4xl px-4 py-10 sm:py-14">
+      <header className="mb-8 flex items-start gap-4">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <FileText className="h-6 w-6" aria-hidden="true" />
+        </span>
+        <div>
+          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{page.title}</h1>
+          <p className="mt-2 text-muted-foreground">{page.updated}</p>
+        </div>
+      </header>
+      <article className="card divide-y divide-border p-6 sm:p-8">
+        {page.sections.map(([title, text]) => (
+          <section key={title} className="py-5 first:pt-0 last:pb-0">
+            <h2 className="text-lg font-bold">{title}</h2>
+            <p className="mt-2 leading-7 text-muted-foreground">{text}</p>
+          </section>
+        ))}
+      </article>
+    </main>
+  )
 }

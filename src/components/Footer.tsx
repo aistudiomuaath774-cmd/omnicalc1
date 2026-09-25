@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { Sigma } from "lucide-react"
 import { useLanguage } from "@/i18n/LanguageContext"
 import { calculators } from "@/calculators/registry"
+import { requestConsentSettings } from "@/components/CookieConsent"
 
 export function Footer() {
   const { t, withLang } = useLanguage()
@@ -53,6 +54,11 @@ export function Footer() {
               <Link to={withLang("/about")} className="text-sm text-muted-foreground hover:text-foreground">
                 {t("nav.about")}
               </Link>
+            </li>
+            <li>
+              <button type="button" onClick={requestConsentSettings} className="text-sm text-muted-foreground hover:text-foreground">
+                {t("footer.privacySettings")}
+              </button>
             </li>
             <li>
               <Link to={withLang("/privacy")} className="text-sm text-muted-foreground hover:text-foreground">

@@ -4,10 +4,15 @@ import { Cookie } from "lucide-react"
 import { useLanguage } from "@/i18n/LanguageContext"
 
 export const COOKIE_CONSENT_KEY = "omnicalc:cookie-consent:v1"
+export const CONSENT_SETTINGS_EVENT = "omnicalc:manage-consent"
 
 export function hasCookieConsent() {
   if (typeof window === "undefined") return false
   return window.localStorage.getItem(COOKIE_CONSENT_KEY) === "accepted"
+}
+
+export function requestConsentSettings() {
+  window.dispatchEvent(new Event(CONSENT_SETTINGS_EVENT))
 }
 
 export default function CookieConsent() {
@@ -15,7 +20,10 @@ export default function CookieConsent() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
+    const showIfRequested = () => setVisible(true)
     setVisible(!window.localStorage.getItem(COOKIE_CONSENT_KEY))
+    window.addEventListener(CONSENT_SETTINGS_EVENT, showIfRequested)
+    return () => window.removeEventListener(CONSENT_SETTINGS_EVENT, showIfRequested)
   }, [])
 
   const choose = (value: "accepted" | "rejected") => {
@@ -41,8 +49,8 @@ export default function CookieConsent() {
             <h2 className="font-bold">{ar ? "نحترم خصوصيتك" : "We respect your privacy"}</h2>
             <p className="text-muted-foreground">
               {ar
-                ? "نستخدم ملفات تعريف الارتباط والتقنيات المشابهة لتشغيل الموقع وقياس الإعلانات بعد موافقتك. يمكنك تغيير قرارك من إعدادات المتصفح."
-                : "We use cookies and similar technologies to operate the site and measure advertising after your consent. You can change your choice in your browser settings."}{" "}
+                ? "نستخدم التخزين المحلي لتشغيل الموقع، ولا نحمّل تقنيات الإعلان غير الضرورية قبل إتمام اختيارك عندما يوجب القانون ذلك. يمكنك تغيير اختيارك من إعدادات الخصوصية في التذييل."
+                : "We use local storage to operate the site, and we do not load non-essential advertising technologies before your choice where required. You can change your choice from Privacy Settings in the footer."}{" "}
               <Link to={withLang("/privacy")} className="font-medium text-primary underline underline-offset-2">
                 {ar ? "اقرأ سياسة الخصوصية" : "Read our Privacy Policy"}
               </Link>

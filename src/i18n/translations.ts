@@ -54,6 +54,7 @@ export const translations: Record<Lang, Dict> = {
     "footer.built": "Built as a fast, static, client-side app.",
     "footer.privacy": "Privacy Policy",
     "footer.terms": "Terms of Use",
+    "footer.privacySettings": "Privacy Settings",
 
     // Scientific
     "sci.title": "Scientific Calculator",
@@ -232,6 +233,7 @@ export const translations: Record<Lang, Dict> = {
     "footer.built": "تطبيق ثابت سريع يعمل بالكامل في المتصفح.",
     "footer.privacy": "سياسة الخصوصية",
     "footer.terms": "شروط الاستخدام",
+    "footer.privacySettings": "إعدادات الخصوصية",
 
     "sci.title": "الحاسبة العلمية",
     "sci.desc": "دوال مثلثية ولوغاريتمات وأسس ومضروب ودعم لوحة المفاتيح.",
