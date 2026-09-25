@@ -11,6 +11,7 @@ export const translations: Record<Lang, Dict> = {
 
     "nav.home": "Home",
     "nav.contact": "Contact",
+    "nav.about": "About Us",
     "nav.calculators": "Calculators",
     "nav.openMenu": "Open menu",
     "nav.closeMenu": "Close menu",
@@ -45,10 +46,6 @@ export const translations: Record<Lang, Dict> = {
 
     "faq.title": "Frequently asked questions",
     "guide.title": "User guide",
-
-    "ad.header": "Advertisement",
-    "ad.sidebar": "Advertisement",
-    "ad.incontent": "Advertisement",
 
     "result.label": "Result",
     "result.none": "Enter values and calculate to see results.",
@@ -192,6 +189,7 @@ export const translations: Record<Lang, Dict> = {
 
     "nav.home": "الرئيسية",
     "nav.contact": "اتصل بنا",
+    "nav.about": "من نحن",
     "nav.calculators": "الحاسبات",
     "nav.openMenu": "افتح القائمة",
     "nav.closeMenu": "أغلق القائمة",
@@ -226,10 +224,6 @@ export const translations: Record<Lang, Dict> = {
 
     "faq.title": "الأسئلة الشائعة",
     "guide.title": "دليل الاستخدام",
-
-    "ad.header": "إعلان",
-    "ad.sidebar": "إعلان",
-    "ad.incontent": "إعلان",
 
     "result.label": "النتيجة",
     "result.none": "أدخل القيم واحسب لعرض النتائج.",

@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react"
 import { useLanguage } from "@/i18n/LanguageContext"
 import { useSEO } from "@/hooks/useSEO"
 import { calculators } from "@/calculators/registry"
-import { AdSlot } from "@/components/AdSlot"
 
 export default function HomePage() {
   const { t, lang, dir, withLang } = useLanguage()
@@ -46,10 +45,6 @@ export default function HomePage() {
           <ArrowRight className={`h-4 w-4 ${dir === "rtl" ? "rotate-180" : ""}`} />
         </a>
       </section>
-
-      <div className="my-8">
-        <AdSlot variant="header" />
-      </div>
 
       <article>
         <section id="calculators" aria-labelledby="calc-heading" className="scroll-mt-20">

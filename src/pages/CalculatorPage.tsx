@@ -5,7 +5,6 @@ import { CalculatorContextProvider } from "@/calculators/CalculatorContext"
 import { useHistory } from "@/hooks/useHistory"
 import { useSEO } from "@/hooks/useSEO"
 import { useLanguage } from "@/i18n/LanguageContext"
-import { AdSlot } from "@/components/AdSlot"
 import { HistoryPanel } from "@/components/HistoryPanel"
 import { StarRating } from "@/components/StarRating"
 import { FaqSection, GuideSection } from "@/components/FaqSection"
@@ -80,8 +79,6 @@ export default function CalculatorPage() {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-6">
-      <AdSlot variant="header" className="mb-6" />
-
       <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
         <article className="flex flex-col gap-6">
           <header className="flex items-start gap-4">
@@ -100,7 +97,6 @@ export default function CalculatorPage() {
             </Suspense>
           </CalculatorContextProvider>
 
-          <AdSlot variant="incontent" />
           <GuideSection text={t(def.guideKey)} />
           <FaqSection faq={def.faq} />
         </article>
@@ -108,7 +104,6 @@ export default function CalculatorPage() {
         <aside className="flex flex-col gap-6">
           <HistoryPanel entries={history.entries} onRemove={history.remove} onClear={history.clear} />
           <StarRating calculatorId={id} />
-          <AdSlot variant="sidebar" />
           <nav aria-label={t("nav.calculators")} className="card p-5">
             <h3 className="mb-3 text-sm font-semibold">{t("nav.calculators")}</h3>
             <ul className="flex flex-col gap-1">

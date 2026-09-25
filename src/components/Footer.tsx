@@ -50,6 +50,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link to={withLang("/about")} className="text-sm text-muted-foreground hover:text-foreground">
+                {t("nav.about")}
+              </Link>
+            </li>
+            <li>
               <Link to={withLang("/privacy")} className="text-sm text-muted-foreground hover:text-foreground">
                 {t("footer.privacy")}
               </Link>

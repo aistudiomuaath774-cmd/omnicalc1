@@ -10,6 +10,7 @@ import AdSenseLoader from "./components/AdSenseLoader"
 const HomePage = lazy(() => import("./pages/HomePage"))
 const CalculatorPage = lazy(() => import("./pages/CalculatorPage"))
 const ContactPage = lazy(() => import("./pages/Contact"))
+const AboutPage = lazy(() => import("./pages/About"))
 const NotFoundPage = lazy(() => import("./pages/NotFound"))
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"))
 const TermsPage = lazy(() => import("./pages/TermsPage"))
@@ -37,6 +38,7 @@ export default function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/calculator/:id" element={<CalculatorPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/about" element={<AboutPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms" element={<TermsPage />} />
                 <Route path="*" element={<NotFoundPage />} />

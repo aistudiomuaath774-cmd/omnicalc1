@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { COOKIE_CONSENT_KEY, hasCookieConsent } from "./CookieConsent"
 
 const SCRIPT_ID = "omnicalc-adsense-script"
-const CLIENT = (import.meta as any).VITE_ADSENSE_CLIENT || "ca-pub-XXXXXXXXXXXX"
+const CLIENT = (import.meta as any).VITE_ADSENSE_CLIENT || "ca-pub-7538440942805514"
 
 export default function AdSenseLoader() {
   const enabled = (import.meta as any).VITE_USE_ADSENSE === "true"

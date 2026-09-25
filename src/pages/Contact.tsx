@@ -2,7 +2,6 @@ import { useState, type FormEvent } from "react"
 import { Mail, Send } from "lucide-react"
 import { useLanguage } from "@/i18n/LanguageContext"
 import { useSEO } from "@/hooks/useSEO"
-import { AdSlot } from "@/components/AdSlot"
 
 const CONTACT_EMAIL = "hello@omnicalc.app"
 
@@ -116,10 +115,6 @@ export default function ContactPage() {
           </p>
         )}
       </form>
-
-      <div className="mt-8">
-        <AdSlot variant="incontent" />
-      </div>
     </main>
   )
 }

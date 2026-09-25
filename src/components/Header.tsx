@@ -37,6 +37,9 @@ export function Header() {
           <NavLink to={withLang("/contact")} className={navLinkClass}>
             {t("nav.contact")}
           </NavLink>
+          <NavLink to={withLang("/about")} className={navLinkClass}>
+            {t("nav.about")}
+          </NavLink>
         </nav>
 
         <div className="flex items-center gap-1">
@@ -82,6 +85,9 @@ export function Header() {
             ))}
             <NavLink to={withLang("/contact")} className={navLinkClass} onClick={() => setOpen(false)}>
               {t("nav.contact")}
+            </NavLink>
+            <NavLink to={withLang("/about")} className={navLinkClass} onClick={() => setOpen(false)}>
+              {t("nav.about")}
             </NavLink>
           </div>
         </nav>
