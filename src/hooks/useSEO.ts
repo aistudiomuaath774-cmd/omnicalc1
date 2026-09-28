@@ -49,13 +49,12 @@ export function useSEO({ title, description, lang, path, keywords, jsonLd }: SEO
 
     const pathname = path || window.location.pathname
     const base = window.location.origin
-    const localized = (locale: string) => `${base}${pathname}${pathname.includes("?") ? "&" : "?"}lang=${locale}`
-    upsertMeta("og:url", localized(lang), "property")
-    upsertLink("canonical", localized(lang))
+    const localized = (locale: "ar" | "en") => `${base}${pathname}?lang=${locale}`
+    const canonicalLang = lang === "ar" ? "ar" : "en"
+    upsertMeta("og:url", localized(canonicalLang), "property")
+    upsertLink("canonical", localized(canonicalLang))
     upsertLink("alternate", localized("ar"), { hreflang: "ar" })
     upsertLink("alternate", localized("en"), { hreflang: "en" })
-    upsertLink("alternate", localized("en-GB"), { hreflang: "en-GB" })
-    upsertLink("alternate", localized("en-IE"), { hreflang: "en-IE" })
     upsertLink("alternate", localized("en"), { hreflang: "x-default" })
     document.documentElement.lang = lang
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"

@@ -46,15 +46,15 @@ html[dir="rtl"] body {
   }
 
   .btn-primary {
-    @apply btn bg-primary text-primary-foreground hover:opacity-90 h-10 px-4;
+    @apply btn min-h-11 bg-primary text-primary-foreground hover:opacity-90 px-4;
   }
 
   .btn-outline {
-    @apply btn border bg-transparent hover:bg-muted h-10 px-4;
+    @apply btn min-h-11 border bg-transparent hover:bg-muted px-4;
   }
 
   .btn-ghost {
-    @apply btn hover:bg-muted h-9 px-3;
+    @apply btn min-h-11 hover:bg-muted px-3;
   }
 
   .field {
@@ -124,17 +124,4 @@ html[dir="rtl"] body {
       transform: translateY(0);
     }
   }
-}
-
-/* Debug/visibility helpers for ad containers */
-.ad-frame {
-  position: relative; /* ensure positioning context */
-  z-index: 20;        /* below cookie dialog (z-50) but above normal content */
-  overflow: visible;  /* allow iframe to display fully */
-}
-
-/* temporary debug class to test forcing visibility */
-.ad-frame--force-visible {
-  z-index: 200 !important; /* debug only: pushes ad above everything; لا تتركه في الإنتاج */
-  outline: 3px dashed rgba(255,0,0,0.9);
 }

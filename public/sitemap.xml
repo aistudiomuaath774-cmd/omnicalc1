@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Homepage -->
   <url>
     <loc>https://omnicalc1.vercel.app/?lang=en</loc>
     <changefreq>daily</changefreq>
@@ -10,7 +9,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/?lang=en"/>
   </url>
 
-  <!-- Static pages -->
   <url>
     <loc>https://omnicalc1.vercel.app/about?lang=en</loc>
     <changefreq>monthly</changefreq>
@@ -26,6 +24,7 @@
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/contact?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/contact?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/contact?lang=en"/>
   </url>
 
   <url>
@@ -34,6 +33,7 @@
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/privacy?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/privacy?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/privacy?lang=en"/>
   </url>
 
   <url>
@@ -42,15 +42,16 @@
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/terms?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/terms?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/terms?lang=en"/>
   </url>
 
-  <!-- Calculators -->
   <url>
     <loc>https://omnicalc1.vercel.app/calculator/scientific?lang=en</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/calculator/scientific?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/calculator/scientific?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/calculator/scientific?lang=en"/>
   </url>
 
   <url>
@@ -59,6 +60,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/calculator/unit-converter?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/calculator/unit-converter?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/calculator/unit-converter?lang=en"/>
   </url>
 
   <url>
@@ -67,6 +69,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/calculator/physics?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/calculator/physics?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/calculator/physics?lang=en"/>
   </url>
 
   <url>
@@ -75,6 +78,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/calculator/health?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/calculator/health?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/calculator/health?lang=en"/>
   </url>
 
   <url>
@@ -83,6 +87,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/calculator/vat?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/calculator/vat?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/calculator/vat?lang=en"/>
   </url>
 
   <url>
@@ -91,6 +96,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/calculator/finance?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/calculator/finance?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/calculator/finance?lang=en"/>
   </url>
 
   <url>
@@ -99,6 +105,6 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://omnicalc1.vercel.app/calculator/date-age?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://omnicalc1.vercel.app/calculator/date-age?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://omnicalc1.vercel.app/calculator/date-age?lang=en"/>
   </url>
-
 </urlset>

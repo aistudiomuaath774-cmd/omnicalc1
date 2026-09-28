@@ -9,6 +9,8 @@ import { HistoryPanel } from "@/components/HistoryPanel"
 import { StarRating } from "@/components/StarRating"
 import { FaqSection, GuideSection } from "@/components/FaqSection"
 import { MethodologySection } from "@/components/MethodologySection"
+import { CalculatorAnswer } from "@/components/CalculatorAnswer"
+import { getCalculatorSeo } from "@/seo/calculatorSeo"
 
 function LoadingCard() {
   return (
@@ -25,31 +27,40 @@ export default function CalculatorPage() {
   const def = getCalculator(id)
   const history = useHistory(id)
 
-  const title = def ? `${t(def.titleKey)} — ${t("app.name")}` : `${t("notFound")} — ${t("app.name")}`
-  const description = def ? t(def.descKey) : t("app.description")
+  const seo = def ? getCalculatorSeo(def.id, lang) : null
+  const title = seo?.title ?? (def ? `${t(def.titleKey)} — ${t("app.name")}` : `${t("notFound")} — ${t("app.name")}`)
+  const description = seo?.description ?? (def ? t(def.descKey) : t("app.description"))
 
   useSEO({
     title,
     description,
-    keywords:
-      lang === "ar"
-        ? `${t(def?.titleKey ?? "app.name")}, حاسبة مجانية، حسابات دقيقة، شرح وطريقة الاستخدام، أدوات أونلاين، نتائج فورية`
-        : `${t(def?.titleKey ?? "app.name")}, free online calculator, accurate calculations, how to use, instant results, online tool`,
+    keywords: seo?.keywords ?? `${t(def?.titleKey ?? "app.name")}, ${t("app.name")}, online calculator`,
     lang,
-    jsonLd: def
+    jsonLd: def && seo
       ? [
           {
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: `${t(def.titleKey)} — ${t("app.name")}`,
-            description: t(def.descKey),
+            name: title,
+            description,
             applicationCategory: "UtilityApplication",
             applicationSubCategory: "Online calculator",
             operatingSystem: "Any",
             url: `${window.location.origin}/calculator/${def.id}?lang=${lang}`,
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
             inLanguage: lang,
-            featureList: [t(def.titleKey), t(def.descKey), t(def.guideKey)],
+            isAccessibleForFree: true,
+            featureList: [t(def.titleKey), description, seo.answer],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: title,
+            applicationCategory: "UtilitiesApplication",
+            operatingSystem: "Web browser",
+            softwareVersion: "1.0",
+            url: `${window.location.origin}/calculator/${def.id}?lang=${lang}`,
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
           },
           {
             "@context": "https://schema.org",
@@ -87,10 +98,12 @@ export default function CalculatorPage() {
               <Icon className="h-6 w-6" />
             </span>
             <div>
-              <h1 className="text-2xl font-extrabold tracking-tight text-balance">{t(def.titleKey)}</h1>
-              <p className="mt-1 text-muted-foreground text-pretty">{t(def.descKey)}</p>
+              <h1 className="text-2xl font-extrabold tracking-tight text-balance">{seo?.title ?? t(def.titleKey)}</h1>
+              <p className="mt-1 text-muted-foreground text-pretty">{seo?.description ?? t(def.descKey)}</p>
             </div>
           </header>
+
+          {seo && <CalculatorAnswer calculatorId={def.id} answer={seo.answer} steps={seo.steps} lang={lang} />}
 
           <CalculatorContextProvider addHistory={history.add}>
             <Suspense fallback={<LoadingCard />}>
