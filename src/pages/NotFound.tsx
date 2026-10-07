@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom"
 import { useLanguage } from "../i18n/LanguageContext"
+import { useSEO } from "../hooks/useSEO"
 
 export default function NotFoundPage() {
-  const { t, withLang } = useLanguage()
+  const { t, withLang, lang } = useLanguage()
+  useSEO({
+    title: `${t("notfound.title")} — OmniCalc`,
+    description: t("notfound.desc"),
+    lang,
+    noindex: true,
+  })
   return (
     <main className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center px-4 text-center">
       <p className="text-6xl font-bold text-primary">404</p>

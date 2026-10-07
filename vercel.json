@@ -1,9 +1,30 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/about/", "destination": "/about", "permanent": true },
+    { "source": "/contact/", "destination": "/contact", "permanent": true },
+    { "source": "/privacy/", "destination": "/privacy", "permanent": true },
+    { "source": "/terms/", "destination": "/terms", "permanent": true },
+    { "source": "/calculator/scientific/", "destination": "/calculator/scientific", "permanent": true },
+    { "source": "/calculator/unit-converter/", "destination": "/calculator/unit-converter", "permanent": true },
+    { "source": "/calculator/physics/", "destination": "/calculator/physics", "permanent": true },
+    { "source": "/calculator/health/", "destination": "/calculator/health", "permanent": true },
+    { "source": "/calculator/vat/", "destination": "/calculator/vat", "permanent": true },
+    { "source": "/calculator/finance/", "destination": "/calculator/finance", "permanent": true },
+    { "source": "/calculator/date-age/", "destination": "/calculator/date-age", "permanent": true }
+  ],
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/privacy", "destination": "/index.html" },
+    { "source": "/terms", "destination": "/index.html" },
+    { "source": "/calculator/scientific", "destination": "/index.html" },
+    { "source": "/calculator/unit-converter", "destination": "/index.html" },
+    { "source": "/calculator/physics", "destination": "/index.html" },
+    { "source": "/calculator/health", "destination": "/index.html" },
+    { "source": "/calculator/vat", "destination": "/index.html" },
+    { "source": "/calculator/finance", "destination": "/index.html" },
+    { "source": "/calculator/date-age", "destination": "/index.html" }
   ]
 }

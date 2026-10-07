@@ -19,6 +19,10 @@ function getInitialLang(): Lang {
   const params = new URLSearchParams(window.location.search)
   const urlLang = params.get("lang")
   if (urlLang === "ar" || urlLang === "en") return urlLang
+  if (urlLang) {
+    params.set("lang", "en")
+    window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}${window.location.hash}`)
+  }
   const stored = window.localStorage.getItem(STORAGE_KEY)
   if (stored === "ar" || stored === "en") return stored
   return "en"

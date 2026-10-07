@@ -7,6 +7,7 @@ interface SEOOptions {
   path?: string
   keywords?: string
   jsonLd?: Record<string, unknown>[]
+  noindex?: boolean
 }
 
 function upsertMeta(name: string, content: string, attr: "name" | "property" = "name") {
@@ -31,10 +32,12 @@ function upsertLink(rel: string, href: string, extra: Record<string, string> = {
   el.href = href
 }
 
-export function useSEO({ title, description, lang, path, keywords, jsonLd }: SEOOptions) {
+export function useSEO({ title, description, lang, path, keywords, jsonLd, noindex = false }: SEOOptions) {
   useEffect(() => {
     document.title = title
     upsertMeta("description", description)
+    upsertMeta("robots", noindex ? "noindex, nofollow, noarchive" : "index, follow, max-image-preview:large")
+    upsertMeta("googlebot", noindex ? "noindex, nofollow" : "index, follow")
     if (keywords) upsertMeta("keywords", keywords)
     upsertMeta("og:title", title, "property")
     upsertMeta("og:description", description, "property")
@@ -69,5 +72,5 @@ export function useSEO({ title, description, lang, path, keywords, jsonLd }: SEO
       document.head.appendChild(script)
     }
     return () => document.getElementById(scriptId)?.remove()
-  }, [title, description, lang, path, keywords, jsonLd])
+  }, [title, description, lang, path, keywords, jsonLd, noindex])
 }
