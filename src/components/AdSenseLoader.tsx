@@ -3,6 +3,7 @@ import { COOKIE_CONSENT_KEY, hasCookieConsent } from "./CookieConsent"
 
 const SCRIPT_ID = "omnicalc-adsense-script"
 const CLIENT = (import.meta as any).VITE_ADSENSE_CLIENT || "ca-pub-7538440942805514"
+const ADSENSE_SCRIPT_SRC = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${CLIENT}`
 
 export default function AdSenseLoader() {
   const enabled = (import.meta as any).VITE_USE_ADSENSE === "true"
@@ -19,7 +20,7 @@ export default function AdSenseLoader() {
       const script = document.createElement("script")
       script.id = SCRIPT_ID
       script.async = true
-      script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${CLIENT}`
+      script.src = ADSENSE_SCRIPT_SRC
       script.crossOrigin = "anonymous"
       document.head.appendChild(script)
     }
